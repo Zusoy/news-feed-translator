@@ -1,0 +1,63 @@
+---
+version: '3.8'
+
+services:
+  http:
+    build:
+      context: .
+      dockerfile: apps/http/Dockerfile
+    ports:
+      - "8081:8081"
+    volumes:
+      - ./apps/api/public:/usr/src/app:ro
+    restart: on-failure
+
+  api:
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
+    volumes:
+      - ./apps/api:/usr/src/app:rw
+    restart: on-failure
+    user: 1000:1000
+    env_file:
+      - .env
+    depends_on:
+      - database
+
+  client:
+    command: 'yarn start'
+    stdin_open: true
+    build:
+      context: apps/client
+      target: dev
+    env_file:
+      - .env
+    ports:
+      - 3000:3000
+    volumes:
+      - ./apps/client:/usr/src/app:rw
+
+  database:
+    image: mysql:8.0.29
+    environment:
+      - MYSQL_DATABASE
+      - MYSQL_USER
+      - MYSQL_PASSWORD
+      - MYSQL_ROOT_PASSWORD
+    restart: on-failure
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  hub:
+    build:
+      context: apps/hub
+    env_file:
+      - .env
+    environment:
+      SERVER_NAME: ':80'
+    ports:
+      - '8080:80'
+
+volumes:
+  mysql_data: ~
