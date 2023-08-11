@@ -26,3 +26,7 @@ kill:
 #######
 # API #
 #######
+
+PHONY: api-shell
+api-shell:
+	@docker exec -it "$$(docker ps -q -f name=news-feed-translator_api)" sh
