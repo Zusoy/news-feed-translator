@@ -39,12 +39,12 @@ services:
       - ./apps/client:/usr/src/app:rw
 
   database:
-    image: mysql:8.0.29
-    environment:
-      - MYSQL_DATABASE
-      - MYSQL_USER
-      - MYSQL_PASSWORD
-      - MYSQL_ROOT_PASSWORD
+    build:
+      context: apps/database
+    env_file:
+      - .env
+    ports:
+      - '3306:3306'
     restart: on-failure
     volumes:
       - mysql_data:/var/lib/mysql
