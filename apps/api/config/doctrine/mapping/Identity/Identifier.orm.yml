@@ -1,0 +1,9 @@
+---
+Domain\Identity\Identifier:
+  type: embeddable
+
+  id:
+    id:
+      type: uuid
+      generator:
+        strategy: NONE

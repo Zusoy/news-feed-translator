@@ -1,0 +1,10 @@
+---
+parameters:
+  app_secret: '%env(APP_SECRET)%'
+
+  mysql_host: '%env(MYSQL_HOST)%'
+  mysql_port: '%env(MYSQL_PORT)%'
+  mysql_database: '%env(MYSQL_DATABASE)%'
+  mysql_user: '%env(MYSQL_USER)%'
+  mysql_password: '%env(MYSQL_PASSWORD)%'
+  mysql_version: '%env(MYSQL_VERSION)%'
