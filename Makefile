@@ -22,7 +22,6 @@ stop:
 kill:
 	docker-compose down
 
-
 #######
 # API #
 #######
@@ -30,3 +29,7 @@ kill:
 PHONY: api-shell
 api-shell:
 	@docker exec -it "$$(docker ps -q -f name=news-feed-translator_api)" sh
+
+.PHONY: api-migrate
+api-migrate:
+	@docker exec -it "$$(docker ps -q -f name=news-feed-translator_api)" ./bin/console do:mi:mi --no-interaction

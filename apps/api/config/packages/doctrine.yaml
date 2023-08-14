@@ -27,6 +27,12 @@ doctrine:
         dir: '%kernel.project_dir%/config/doctrine/mapping/Identity'
         prefix: Domain\Identity
         alias: Identity
+      Model:
+        is_bundle: false
+        type: yml
+        dir: '%kernel.project_dir%/config/doctrine/mapping/Model'
+        prefix: Domain\Model
+        alias: Model
 
 when@test:
   doctrine:

@@ -1,0 +1,47 @@
+---
+Domain\Model\Newsfeed:
+  type: entity
+
+  embedded:
+    id:
+      class: Domain\Identity\Identifier
+      columnPrefix: false
+
+  uniqueConstraints:
+    unique_provider_id:
+      columns: [ provider_id ]
+
+  fields:
+    providerId:
+      type: integer
+
+    providerRecordId:
+      type: integer
+
+    writtenAt:
+      type: datetime_immutable
+
+    alert:
+      type: boolean
+
+  oneToOne:
+    title:
+      targetEntity: Translation
+      cascade: ['persist', 'remove']
+      joinColumn:
+        nullable: false
+        onDelete: CASCADE
+
+    subtitle:
+      targetEntity: Translation
+      cascade: ['persist', 'remove']
+      joinColumn:
+        nullable: false
+        onDelete: CASCADE
+
+    body:
+      targetEntity: Translation
+      cascade: ['persist', 'remove']
+      joinColumn:
+        nullable: false
+        onDelete: CASCADE

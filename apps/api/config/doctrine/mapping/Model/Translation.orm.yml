@@ -1,0 +1,25 @@
+---
+Domain\Model\Translation:
+  type: entity
+
+  embedded:
+    id:
+      class: Domain\Identity\Identifier
+      columnPrefix: false
+
+  fields:
+    originalText:
+      type: text
+      nullable: false
+
+    originalLocale:
+      type: string
+      nullable: false
+
+    translatedText:
+      type: text
+      nullable: false
+
+    translatedLocale:
+      type: string
+      nullable: false
