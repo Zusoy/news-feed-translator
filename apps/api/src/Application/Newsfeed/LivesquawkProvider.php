@@ -39,7 +39,6 @@ final class LivesquawkProvider implements ProviderInterface
 
                 $newsfeeds[] = $newsfeed;
             } catch(Throwable $e) {
-                dump($e);
                 continue;
             }
         }
