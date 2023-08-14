@@ -20,10 +20,9 @@ final class Newsfeeds implements NewsfeedsInterface
         $this->innerRepository = $entityManager->getRepository(Newsfeed::class);
     }
 
-    public function add(Newsfeed $newsfeed)
+    public function add(Newsfeed $newsfeed): void
     {
         $this->entityManager->persist($newsfeed);
-        $this->entityManager->flush();
     }
 
     public function findAll(): iterable
@@ -44,5 +43,10 @@ final class Newsfeeds implements NewsfeedsInterface
         $lastRecord = $this->innerRepository->findOneBy(criteria: [], orderBy: ['providerRecordId' => 'DESC']);
 
         return $lastRecord ? $lastRecord->getProviderId() : null;
+    }
+
+    public function flush(): void
+    {
+        $this->entityManager->flush();
     }
 }

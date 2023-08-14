@@ -8,7 +8,7 @@ use Domain\Model\Newsfeed;
 
 interface Newsfeeds
 {
-    public function add(Newsfeed $newsfeed);
+    public function add(Newsfeed $newsfeed): void;
 
     public function findLastRecordId(): ?int;
 
@@ -18,4 +18,6 @@ interface Newsfeeds
      * @return iterable<Newsfeed>
      */
     public function findAll(): iterable;
+
+    public function flush(): void;
 }

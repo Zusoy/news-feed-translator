@@ -36,12 +36,12 @@ Domain\Model\Newsfeed:
       targetEntity: Translation
       cascade: ['persist', 'remove']
       joinColumn:
-        nullable: false
+        nullable: true
         onDelete: CASCADE
 
     body:
       targetEntity: Translation
       cascade: ['persist', 'remove']
       joinColumn:
-        nullable: false
+        nullable: true
         onDelete: CASCADE

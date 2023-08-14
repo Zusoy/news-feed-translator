@@ -7,7 +7,6 @@ namespace Domain\Model;
 use DateTimeImmutable;
 use Domain\Identity\Identifiable;
 use Domain\Identity\Identifier;
-use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 
 class Newsfeed implements Identifiable
 {
@@ -16,8 +15,8 @@ class Newsfeed implements Identifiable
     public readonly int $providerRecordId;
     public readonly DateTimeImmutable $writtenAt;
     public readonly Translation $title;
-    public readonly Translation $subtitle;
-    public readonly Translation $body;
+    public readonly ?Translation $subtitle;
+    public readonly ?Translation $body;
     public readonly bool $alert;
 
     public function __construct(
@@ -25,8 +24,8 @@ class Newsfeed implements Identifiable
         int $providerRecordId,
         DateTimeImmutable $writtenAt,
         Translation $title,
-        Translation $subtitle,
-        Translator $body,
+        ?Translation $subtitle,
+        ?Translation $body,
         bool $alert
     ) {
         $this->id = Identifier::generate();
