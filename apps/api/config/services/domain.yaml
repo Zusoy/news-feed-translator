@@ -1,0 +1,13 @@
+---
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  Domain\:
+    resource: '%kernel.project_dir%/src/Domain'
+    exclude: '%kernel.project_dir%/src/Domain/{Model,Command}'
+
+  Domain\CommandHandler\:
+    resource: '%kernel.project_dir%/src/Domain/CommandHandler'
+    tags: [ messenger.message_handler ]

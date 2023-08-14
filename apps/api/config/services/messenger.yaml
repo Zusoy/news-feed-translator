@@ -1,0 +1,9 @@
+---
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  Infra\Symfony\Messenger\SynchroneCommandBus: ~
+  Application\CommandBus: '@Infra\Symfony\Messenger\SynchroneCommandBus'
