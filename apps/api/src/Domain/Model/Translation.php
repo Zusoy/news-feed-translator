@@ -10,7 +10,7 @@ use Stringable;
 
 class Translation implements Identifiable, Stringable
 {
-    private readonly Identifier $id;
+    private Identifier $id;
     public readonly string $originalText;
     public readonly string $originalLocale;
     public readonly string $translatedText;

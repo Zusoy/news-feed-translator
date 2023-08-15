@@ -1,0 +1,19 @@
+---
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  Application\Normalization\:
+    resource: '%kernel.project_dir%/src/Application/Normalization/'
+
+  Application\Normalization\Normalizer\:
+    resource: '%kernel.project_dir%/src/Application/Normalization/Normalizer'
+    tags: [ app.normalizer ]
+
+  Application\Normalization\Normalizer\AggregateNormalizer:
+    $normalizers: !tagged_iterator { tag: app.normalizer }
+
+  # Alias
+
+  Application\Normalization\Normalizer: '@Application\Normalization\Normalizer\AggregateNormalizer'

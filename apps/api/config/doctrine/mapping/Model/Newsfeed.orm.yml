@@ -28,6 +28,7 @@ Domain\Model\Newsfeed:
     title:
       targetEntity: Translation
       cascade: ['persist', 'remove']
+      fetch: EAGER
       joinColumn:
         nullable: false
         onDelete: CASCADE
@@ -35,13 +36,15 @@ Domain\Model\Newsfeed:
     subtitle:
       targetEntity: Translation
       cascade: ['persist', 'remove']
+      fetch: EAGER
       joinColumn:
-        nullable: false
+        nullable: true
         onDelete: CASCADE
 
     body:
       targetEntity: Translation
       cascade: ['persist', 'remove']
+      fetch: EAGER
       joinColumn:
-        nullable: false
+        nullable: true
         onDelete: CASCADE

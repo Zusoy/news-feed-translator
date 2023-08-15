@@ -8,3 +8,10 @@ parameters:
   mysql_user: '%env(MYSQL_USER)%'
   mysql_password: '%env(MYSQL_PASSWORD)%'
   mysql_version: '%env(MYSQL_VERSION)%'
+
+  newsfeed_provider_url: '%env(PROVIDER_URL)%'
+  newsfeed_api_key: '%env(PROVIDER_AUTH_KEY)%'
+
+  translator_api_key: '%env(DEEPL_API_KEY)%'
+  translator_target_language: '%env(DEEPL_TARGET_LANGUAGE)%'
+  translator_api_domain: '%env(DEEPL_DOMAIN_URL)%'

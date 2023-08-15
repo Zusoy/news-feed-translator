@@ -1,0 +1,11 @@
+---
+services:
+  _defaults:
+    public: false
+    autowire: true
+    autoconfigure: true
+
+  Infra\Doctrine\Repository\:
+    resource: '%kernel.project_dir%/src/Infra/Doctrine/Repository'
+
+  Domain\Repository\Newsfeeds: '@Infra\Doctrine\Repository\Newsfeeds'

@@ -1,0 +1,15 @@
+---
+services:
+  _defaults:
+    public: false
+    autowire: true
+    autoconfigure: true
+
+  Application\Translator\DeeplTranslator:
+    $apiKey: '%translator_api_key%'
+    $targetLanguage: '%translator_target_language%'
+    $domainUrl: '%translator_api_domain%'
+
+  # Alias
+
+  Domain\Translator: '@Application\Translator\DeeplTranslator'

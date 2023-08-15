@@ -1,0 +1,9 @@
+---
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  Application\HTTP\Controller\:
+    resource: '%kernel.project_dir%/src/Application/HTTP/Controller'
+    tags: [ controller.service_arguments ]

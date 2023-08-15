@@ -1,0 +1,16 @@
+---
+services:
+  _defaults:
+    public: false
+    autowire: true
+    autoconfigure: true
+
+  Application\Newsfeed\Client\LivesquawkClient:
+    $livesquawkUrl: '%newsfeed_provider_url%'
+    $livesquawkApiKey: '%newsfeed_api_key%'
+
+  Application\Newsfeed\LivesquawkProvider: ~
+
+  # Alias
+
+  Domain\NewsfeedProvider: '@Application\Newsfeed\LivesquawkProvider'
