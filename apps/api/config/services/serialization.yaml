@@ -1,0 +1,19 @@
+---
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  Application\Serialization\:
+    resource: '%kernel.project_dir%/src/Application/Serialization/'
+
+  Application\Serialization\Serializer\:
+    resource: '%kernel.project_dir%/src/Application/Serialization/Serializer'
+    tags: [ app.serializer ]
+
+  Application\Serialization\Serializer\AggregateSerializer:
+    $serializers: !tagged_iterator { tag: app.serializer }
+
+  # Alias
+
+  Application\Serialization\Serializer: '@Application\Serialization\Serializer\AggregateSerializer'

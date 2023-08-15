@@ -10,7 +10,7 @@ use Domain\Identity\Identifier;
 
 class Newsfeed implements Identifiable
 {
-    private readonly Identifier $id;
+    private Identifier $id;
     public readonly int $providerId;
     public readonly int $providerRecordId;
     public readonly DateTimeImmutable $writtenAt;

@@ -28,7 +28,7 @@ final class LivesquawkClient
     }
 
     /**
-     * @return array {
+     * @return array{
      *  max_record_id: int,
      *  data: array<Record>
      * }

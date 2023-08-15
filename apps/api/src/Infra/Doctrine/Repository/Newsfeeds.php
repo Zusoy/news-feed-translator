@@ -40,9 +40,10 @@ final class Newsfeeds implements NewsfeedsInterface
 
     public function findLastRecordId(): ?int
     {
+        /** @var Newsfeed|null */
         $lastRecord = $this->innerRepository->findOneBy(criteria: [], orderBy: ['providerRecordId' => 'DESC']);
 
-        return $lastRecord ? $lastRecord->getProviderId() : null;
+        return $lastRecord ? $lastRecord->providerId : null;
     }
 
     public function flush(): void

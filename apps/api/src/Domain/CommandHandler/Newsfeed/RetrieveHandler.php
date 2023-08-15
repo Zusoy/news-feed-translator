@@ -18,6 +18,7 @@ final class RetrieveHandler
 
     public function __invoke(Command\Retrieve $command): void
     {
+        /** @var null|int */
         $lastRecordId = $command->lastRecordId ?? $this->newsfeeds->findLastRecordId();
         $records = $this->provider->getLatestNewsfeeds(maxRecordId: $lastRecordId, translate: (bool) $lastRecordId);
 

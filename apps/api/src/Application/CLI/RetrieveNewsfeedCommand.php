@@ -41,6 +41,7 @@ final class RetrieveNewsfeedCommand extends Command
     {
         $io = new SymfonyStyle($input, $output);
 
+        /** @var string|null */
         $lastRecordId = $input->getOption('last-record-id');
         $this->commandBus->execute(new Retrieve($lastRecordId));
 
