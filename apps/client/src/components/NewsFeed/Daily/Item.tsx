@@ -4,15 +4,16 @@ import { News } from '../../../models/news'
 
 interface Props {
   readonly news: News
+  readonly latest: boolean
 }
 
-const Item: React.FC<Props> = ({ news }) => {
+const Item: React.FC<Props> = ({ news, latest }) => {
   const currentDate = new Date(parseInt(news.date_write) * 1000)
   const hoursMinutes = currentDate.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })
 
   return (
     <Wrapper>
-      <Hours>{ hoursMinutes }</Hours>
+      <Hours latest={ latest }>{ hoursMinutes }</Hours>
       <NewItemLine />
       <Content>
         <Title>{ news.title }</Title>
@@ -27,7 +28,7 @@ const Item: React.FC<Props> = ({ news }) => {
 
 const Wrapper = styled.div`
   display: flex;
-  gap: 15px;
+  gap: 16px;
   width: 100%;
   margin-bottom: 4px;
 `
@@ -40,7 +41,27 @@ const Content = styled.div(({ theme }) => `
   border-radius: 9px;
 `)
 
-const Hours = styled.div``
+const Hours = styled.div<{ latest: boolean }>(( { theme, latest }) => `
+  position: relative;
+  width: 122px;
+  text-align: right;
+
+  ${ latest &&
+    `
+    font-size: 18px;
+    &:before {
+      justify-content: center;
+      left: 0px;
+      top: 0px;
+      bottom: 0px;
+      padding: 0px 8px;
+      content: 'dernier';
+      text-transform: uppercase;
+      font-size: 18px;
+    }
+    `
+  }
+`)
 
 const Title = styled.div(({ theme }) => `
   color: ${ theme.colors.green };

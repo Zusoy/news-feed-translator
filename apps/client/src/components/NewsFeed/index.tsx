@@ -62,6 +62,9 @@ const Content = styled.div`
 
 const ContentWrapper = styled.div`
   position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 `
 
 export default NewsFeed

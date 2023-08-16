@@ -4,8 +4,8 @@ import styled from 'styled-components'
 import Item from './Item'
 
 interface Props {
-  date: Date
-  news: News[]
+  readonly date: Date
+  readonly news: News[]
 }
 
 const Daily: React.FC<Props> = ({ news, date }) => {
@@ -18,7 +18,12 @@ const Daily: React.FC<Props> = ({ news, date }) => {
         <Date>{ day } { dateFormat }</Date>
         <DailyWrapper>
           { news.map(
-            dailyNews => <Item key={ dailyNews.ID } news={ dailyNews } />
+            (dailyNews, i) =>
+              <Item
+                key={ dailyNews.ID }
+                news={ dailyNews }
+                latest={ i === 0 }
+              />
           ) }
         </DailyWrapper>
       </Container>
@@ -27,8 +32,6 @@ const Daily: React.FC<Props> = ({ news, date }) => {
 }
 
 const Wrapper = styled.div`
-  padding-top: 5px;
-  padding-bottom: 5px;
 `
 
 const Container = styled.div`
@@ -39,6 +42,7 @@ const Date = styled.div`
   letter-spacing: 2px;
   padding-left: 140px;
 `
+
 const DailyWrapper = styled.div`
   display: flex;
   flex-direction: column;
