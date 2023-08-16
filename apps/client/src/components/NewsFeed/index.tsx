@@ -1,30 +1,16 @@
-import React from 'react'
-import { News } from '../../models/news'
-import JourneyItem from './JourneyItem'
+import React, { useEffect } from 'react'
+import { fetchAll, selectDailyNews } from './slice'
+import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
+import Daily from './Daily'
 
-interface Props {
-  readonly news: News[]
-}
+const NewsFeed: React.FC = () => {
+  const dispatch = useDispatch()
+  const news = useSelector(selectDailyNews)
 
-interface NewsByTime {
-  [key: string]: News[]
-}
-
-const sortByTimeday = (news: News[]): NewsByTime => {
-  let newsByTime: {[key: string]: News[]} = {}
-
-  news.forEach(news => {
-    newsByTime[news.dateWrite] = newsByTime[news.dateWrite] !== undefined
-      ? [ ...newsByTime[news.dateWrite], news ]
-      : [ news ]
-  })
-
-  return newsByTime
-}
-
-const NewsFeed: React.FC<Props> = ({ news }) => {
-  const newsByDay = sortByTimeday(news)
+  useEffect(() => {
+    dispatch(fetchAll())
+  }, [ dispatch ])
 
   return (
     <Wrapper>
@@ -32,12 +18,12 @@ const NewsFeed: React.FC<Props> = ({ news }) => {
         <Header></Header>
         <Content>
           <ContentWrapper>
-            { Object.keys(newsByDay).map(
-              timeday =>
-                <JourneyItem
-                  key={ timeday }
-                  news={ newsByDay[timeday] }
-                  date={ new Date(parseInt(timeday)) }
+            { Object.keys(news).map(
+              (timeday, i) =>
+                <Daily
+                  key={ i }
+                  news={ news[timeday] }
+                  date={ new Date(Date.parse(timeday)) }
                 />
             ) }
           </ContentWrapper>
@@ -57,6 +43,8 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
+  align-items: center;
+  justify-content: center;
 `
 
 const Header = styled.div`

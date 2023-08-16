@@ -1,7 +1,7 @@
 export interface News {
-  readonly id: string
-  readonly recordId: string
-  readonly dateWrite: string
+  readonly ID: string
+  readonly record_id: string
+  readonly date_write: string
   readonly title: string
   readonly subtitle: string
   readonly body: string
